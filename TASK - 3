@@ -1,0 +1,33 @@
+# Disaster Relief Resource Allocation
+
+def priority_value(level):
+    priorities = {"Critical": 4, "High": 3, "Medium": 2, "Low": 1}
+    return priorities.get(level, 0)
+
+n = int(input("Enter number of locations: "))
+
+requests = []
+
+for _ in range(n):
+    loc = input("Enter Location ID: ")
+    urgency = input("Enter Urgency (Critical/High/Medium/Low): ")
+    units = int(input("Enter Required Units: "))
+    requests.append((loc, urgency, units))
+
+total_resources = int(input("Enter total available resources: "))
+
+# Sort by priority (highest first)
+requests.sort(key=lambda x: priority_value(x[1]), reverse=True)
+
+allocation = {}
+pending = []
+
+for loc, urgency, units in requests:
+    if total_resources >= units:
+        allocation[loc] = units
+        total_resources -= units
+    else:
+        pending.append(loc)
+
+print("\nResource Allocation:", allocation)
+print("Pending Locations:", pending)
