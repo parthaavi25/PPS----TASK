@@ -1,0 +1,30 @@
+# Farm Expense Calculator
+
+def calculate_total(seed, fertilizer, labor, irrigation):
+    return seed + fertilizer + labor + irrigation
+
+def calculate_result(total_expense, revenue):
+    if revenue > total_expense:
+        return "Profit of " + str(revenue - total_expense)
+    elif revenue < total_expense:
+        return "Loss of " + str(total_expense - revenue)
+    else:
+        return "Break-even"
+
+# Inputs
+seed = int(input("Enter Seed Cost: "))
+fertilizer = int(input("Enter Fertilizer Cost: "))
+labor = int(input("Enter Labor Cost: "))
+irrigation = int(input("Enter Irrigation Cost: "))
+revenue = int(input("Enter Revenue: "))
+
+if seed < 0 or fertilizer < 0 or labor < 0 or irrigation < 0 or revenue < 0:
+    print("Invalid input! Values must be non-negative.")
+else:
+    total_expense = calculate_total(seed, fertilizer, labor, irrigation)
+    result = calculate_result(total_expense, revenue)
+
+    print("\nSummary:")
+    print("Total Expense:", total_expense)
+    print("Revenue:", revenue)
+    print("Net Result:", result)
